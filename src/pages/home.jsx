@@ -92,7 +92,15 @@ setBooks={setBooks} preSearchResetBooks={preSearchResetBooks}/>
       {loading && <p>Loading books...</p>}
       {error && <p>Error: {error}</p>}
       {books.length > 0 && ( <div>
-        <table className="table-auto w-[90vw] mx-auto">
+
+
+
+
+
+{/* Table Starts */}
+
+
+        <table className="table-auto sm:w-[70vw] lg:w-[90vw] mx-auto">
           <thead>
             <tr>
               <th className="px-2 py-1">No.</th>
@@ -142,6 +150,23 @@ setBooks={setBooks} preSearchResetBooks={preSearchResetBooks}/>
           </tbody>
         </table>
         
+
+{/* Table Ends */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       )}
       
