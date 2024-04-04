@@ -24,7 +24,7 @@ const {id} = useParams();
 
 useEffect(() =>{
 setLoading(true);
-axios.get(`https://bookstoremodified.onrender.com/books/${id}`).then((response)=>{
+axios.get(`http://localhost:5555/books/${id}`).then((response)=>{
   //set data
   setTitle(response.data.title);
     setAuthor(response.data.author);
@@ -49,7 +49,7 @@ const data = {
   pageNumber,
 };
 setLoading(true);
-axios.put(`https://bookstoremodified.onrender.com/books/${id}`, data).then(()=>{
+axios.put(`http://localhost:5555/books/${id}`, data).then(()=>{
 setLoading(false);
 navigate('/');
 }).catch((error)=>{

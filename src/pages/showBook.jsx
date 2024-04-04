@@ -15,7 +15,7 @@ const { id } = useParams();
 
 useEffect(() =>{
 setLoading(true);
-axios.get(`https://bookstoremodified.onrender.com/books/${id}`)
+axios.get(`http://localhost:5555/books/${id}`)
 .then((response)=>{
 setBook(response.data);
 setLoading(false);

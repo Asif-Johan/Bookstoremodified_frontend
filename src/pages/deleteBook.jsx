@@ -16,7 +16,7 @@ const {id} = useParams();
 
 const handleDeleteBook = () => {
   setLoading(true);
-  axios.delete(`https://bookstoremodified.onrender.com/books/${id}`)
+  axios.delete(`http://localhost:5555/books/${id}`)
   .then(()=>{
     setLoading(false);
     alert('Book Deleted Successfully');

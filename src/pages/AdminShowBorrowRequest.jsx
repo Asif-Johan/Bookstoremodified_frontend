@@ -10,12 +10,12 @@ const AdminShowBorrowRequest = ({isAdmin}) => {
 
   const fetchData = async () => {
     try {
-      const borrowRes = await axios.get("https://bookstoremodified.onrender.com/246admin/borrow/requests", {
+      const borrowRes = await axios.get("http://localhost:5555/246admin/borrow/requests", {
         params : {
           isAdmin: isAdmin,
         }
       } );
-      const bookRes = await axios.get("https://bookstoremodified.onrender.com/books");
+      const bookRes = await axios.get("http://localhost:5555/books");
 
       const borrowRequests = borrowRes.data.data;
       const books = bookRes.data.data;

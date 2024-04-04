@@ -19,7 +19,7 @@ const [preSearchResetBooks, setpreSearchResetBooks] = useState();
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage, setBooksPerPage] = useState(30);
+  const [booksPerPage, setBooksPerPage] = useState(20);
 
 
 
@@ -32,7 +32,7 @@ const [preSearchResetBooks, setpreSearchResetBooks] = useState();
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get("https://bookstoremodified.onrender.com/books");
+        const response = await axios.get("http://localhost:5555/books");
         setBooks(response.data.data);
         setpreSearchResetBooks(response.data.data);
       } catch (err) {
@@ -99,56 +99,51 @@ setBooks={setBooks} preSearchResetBooks={preSearchResetBooks}/>
 
 {/* Table Starts */}
 
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[85vw] mx-auto">
+  {currentBooks.map((book, index) => (
+    <div key={book._id} className="border border-green-600 rounded-3xl shadow-md shadow-green-200 ps-3 pt-5 pb-4">
+     <div className=" border-b-2 h-[40vh] mb-4">
+      <div className="p-2">
+        <span className="font-bold">No.</span> {index + 1 + firstBookIndex}
+      </div>
+      <div className="p-2">
+        <span className="font-bold">Title:</span> {book.title}
+      </div>
+      <div className="p-2">
+        <span className="font-bold">Author:</span> {book.author}
+      </div>
+      <div className="p-2">
+        <span className="font-bold">Pages:</span> {book.pageNumber}
+      </div>
+      </div>
+      <div className="p-2 flex justify-center gap-3">
+        <Link to={`/books/details/${book._id}`}>
+          <BsInfoCircle className="text-blue-400 text-2xl" />
+        </Link>
 
-        <table className="table-auto sm:w-[70vw] lg:w-[90vw] mx-auto">
-          <thead>
-            <tr>
-              <th className="px-2 py-1">No.</th>
-              <th className="px-2 py-1">Title</th>
-              <th className="px-2 py-1">Author</th>
-              {/* Publish Year */}
-              <th className="px-2 py-1">Pages</th>
-              <th className="px-2 py-1">Operations</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentBooks.map((book, index) => (
-              <tr key={book._id} className="h-8 border border-gray-200">
-                <td className="px-2 py-1">{index + 1+ firstBookIndex}</td>
-                <td className="px-2 py-1">{book.title}</td>
-                <td className="px-2 py-1">{book.author}</td>
-                <td className="px-2 py-1">{book.pageNumber}</td>
-                <td className="px-5 py-1 flex justify-center gap-3">
-                  <Link to={`/books/details/${book._id}`}>
-                    <BsInfoCircle className="text-blue-400 text-2xl" />
-                  </Link>
+        {!isLoggedAdmin && (
+          <Link to={`/books/borrow/${book._id}`}>
+            <p className="bg-green-200 rounded-md px-2 shadow-lg shadow-green-200 ">
+              Borrow
+            </p>
+          </Link>
+        )}
 
-                  {/* Borrow */}
-                  {!isLoggedAdmin && (
-                    <div>
-                      <Link to={`/books/borrow/${book._id}`}>
-                        <p className="bg-green-200 rounded-md px-2 shadow-lg shadow-green-200 ">
-                          Borrow
-                        </p>
-                      </Link>
-                    </div>
-                  )}
+        {isLoggedAdmin && (
+          <>
+            <Link to={`/books/edit/${book._id}`}>
+              <AiOutlineEdit className="text-green-400 text-2xl" />
+            </Link>
+            <Link to={`/books/delete/${book._id}`}>
+              <MdOutlineDelete className="text-red-400 text-2xl" />
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
 
-                  {isLoggedAdmin && (
-                    <>
-                      <Link to={`/books/edit/${book._id}`}>
-                        <AiOutlineEdit className="text-green-400 text-2xl" />
-                      </Link>
-                      <Link to={`/books/delete/${book._id}`}>
-                        <MdOutlineDelete className="text-red-400 text-2xl" />
-                      </Link>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
         
 
 {/* Table Ends */}
