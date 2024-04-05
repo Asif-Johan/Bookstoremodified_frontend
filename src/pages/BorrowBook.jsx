@@ -35,7 +35,7 @@ const [createForm, setCreateForm] = useState({
 useEffect(() =>{
 
 
-  axios.get(`http://localhost:5555/books/${id}`)
+  axios.get(`https://bookstoremodified.onrender.com/books/${id}`)
   .then((response)=>{
   setBook(response.data);
 
@@ -71,7 +71,7 @@ const handleChange = (e) => {
 
     // console.log("form submit req hit");
 
-    const res = axios.post('http://localhost:5555/borrow', createForm).then(
+    const res = axios.post('https://bookstoremodified.onrender.com/borrow', createForm).then(
       (res)=>{
 // console.log("Borrow Request Added", res);
 navigate('/');

@@ -22,13 +22,13 @@ approve
   const setApproveAccepted = () => {
    requestArray[6] = true;
   
-   axios.post("http://localhost:5555/nodemailer", requestArray).then(
+   axios.post("https://bookstoremodified.onrender.com/nodemailer", requestArray).then(
    
    ).catch(err=>{
     console.log(err);
    })
 
-   axios.delete(`http://localhost:5555/admin/borrow/request/${borrowId}`).then(()=>{
+   axios.delete(`https://bookstoremodified.onrender.com/admin/borrow/request/${borrowId}`).then(()=>{
     alert('Request Accepted and deleted')
     props.updateData();
 
@@ -41,13 +41,13 @@ approve
   const setApproveRejected = () => {
     requestArray[6] = false;
   
-    axios.post("http://localhost:5555/nodemailer", requestArray).then(
+    axios.post("https://bookstoremodified.onrender.com/nodemailer", requestArray).then(
      ).catch(err=>{
       console.log(err);
      })
 
     //  console.log(borrowid);
-     axios.delete(`http://localhost:5555/admin/borrow/request/${borrowId}`).then(()=>{
+     axios.delete(`https://bookstoremodified.onrender.com/admin/borrow/request/${borrowId}`).then(()=>{
       alert('Request rejected and deleted')
       props.updateData();
 

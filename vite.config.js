@@ -6,7 +6,7 @@ export default defineConfig({
   //proxy 
 server: {
     proxy: {
-      '/api': 'http://localhost:5555'
+      '/api': 'https://bookstoremodified.onrender.com'
 }},
       
   plugins: [react()],
